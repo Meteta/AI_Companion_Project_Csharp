@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[1.27.0, )"
             },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
             "System.Speech": {
               "target": "Package",
               "version": "[7.0.0, )"

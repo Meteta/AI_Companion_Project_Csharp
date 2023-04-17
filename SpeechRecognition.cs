@@ -9,8 +9,8 @@ namespace SpeechRecognitionEngine
     public class SRE
     {
          // Speech Recognition Code
-        static string speechKey = ""; //Find on https://portal.azure.com/#home
-        static string speechRegion = ""; //Also find on https://portal.azure.com/#home
+        static string speechKey = "e605c036e5f74568894465581068ce32"; //Find on https://portal.azure.com/#home
+        static string speechRegion = "australiaeast"; //Also find on https://portal.azure.com/#home
         public static Queue<string> transcript = new Queue<string>();
         static void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
         {
@@ -42,6 +42,7 @@ namespace SpeechRecognitionEngine
             var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
             speechConfig.SpeechRecognitionLanguage = "en-US";
 
+            
             using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
             using var speechRecognizer = new Microsoft.CognitiveServices.Speech.SpeechRecognizer(speechConfig, audioConfig);
 
