@@ -53,6 +53,7 @@ namespace SpeechRecognitionEngine
             phraseList.AddPhrase($"{Program.charName} End Program");
             phraseList.AddPhrase($"{Program.charName} Print Transcript");
             phraseList.AddPhrase($"{Program.charName} Clear Transcript");
+            phraseList.AddPhrase($"{Program.charName} List Responses");
 
             var speechRecognitionResult = await speechRecognizer.RecognizeOnceAsync();
             OutputSpeechRecognitionResult(speechRecognitionResult);

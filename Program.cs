@@ -16,6 +16,11 @@ https://www.nuget.org/packages/OpenAI/
 5. AI Voice Synthasizer to read response.
 6. Discord Integration.
 
+
+ISSUES:
+1. Limited Lifespan
+    a. Only a certain amount of messages can go to ChatGPT before it exits out due to how big the conversation is.
+    b, Resolved by starting a new conversation every 100 lines. (May need to figure out a way to change that to be based on bytes)
 **/
 namespace AI_Companion
 {
@@ -27,10 +32,17 @@ namespace AI_Companion
             SRE speech = new SRE();
             // Naming your companion
             // Console.WriteLine("SYSTEM: Input a Name for your Companion");
-            // charName = TextInput();
+            // charName = TextInput().ToUpper();
             // Prompt Warning
             Console.WriteLine("Edit the prompt.txt file for more specific responses");
-            systemMessage = File.ReadAllText(promptFile);
+            Console.WriteLine("Would you like to read the textfile?");
+            if (BoolInput()) {
+                systemMessage = File.ReadAllText(promptFile);
+            } else {
+                Console.WriteLine("Please input a prompt. (Think of this as the personality behind your companion. E.G: You are a AI Language learning)");
+                systemMessage = TextInput();
+            }
+
             chat.AppendSystemMessage(systemMessage);
             chat.AppendSystemMessage($"Your name is {charName}. You will respond in 2 to 3 sentences at a time. When you hear End Program, say goodbye.");
             
@@ -52,7 +64,18 @@ namespace AI_Companion
                     Console.WriteLine("Please enter a valid text value");
                 }
             }
-            return temp.ToUpper();
+            return temp;
+        }
+        static bool BoolInput(){
+            string temp = null;
+            while(string.IsNullOrWhiteSpace(temp) || !(temp.ToUpper() == "Y" || temp.ToUpper() == "N")){
+                temp = Console.ReadLine().ToString();
+                if (string.IsNullOrWhiteSpace(temp) || !(temp.ToUpper() == "Y" || temp.ToUpper() == "N")){
+                    Console.WriteLine("Please enter a valid text value");
+                }
+            }
+            if(temp.ToUpper() == "Y") return true;
+            else return false;
         }
 
         public static string charName = "CELESTE";
@@ -84,10 +107,17 @@ namespace AI_Companion
                     int line = 0;
                     foreach( string text in transcript){
                         line++;
-                        Console.WriteLine($"{line}: {text}");
+                        Console.WriteLine($"SLOT {line}: {text}");
                     }
-                } else if (compareIgnoreCase(currentString, "Celeste Clear Transcript")){
+                } else if (compareIgnoreCase(currentString, "Clear Transcript")){
                     transcript.Clear();
+                    shouldRespond = false;
+                } else if (compareIgnoreCase(currentString, "List Responses")){
+                    int line = 0;
+                    foreach(OpenAI_API.Chat.ChatMessage text in chat.Messages){
+                        line++;
+                        Console.WriteLine($"SYSTEM AICHATMESSAGE {line}: {text.Content}");
+                    }
                     shouldRespond = false;
                 };
 
@@ -95,11 +125,14 @@ namespace AI_Companion
         }
 
         static async Task textToAI(){
-            
-            foreach( string text in transcript ){
-                chat.AppendUserInput(text);
+            // To deal with limited space issues, reset the chat every 100 messages
+            if (chat.Messages.Count > 100){
+                chat = api.Chat.CreateConversation();
+                chat.AppendSystemMessage(systemMessage);
+                chat.AppendSystemMessage($"Your name is {charName}. You will respond in 2 to 3 sentences at a time. When you hear End Program, say goodbye.");
             }
-            // chat.AppendUserInput(transcript.Last<string>());
+            chat.AppendUserInput(transcript.Last<string>());
+
             string response = await chat.GetResponseFromChatbotAsync();
             Console.WriteLine($"{charName} - RESPONSE : {response} ");
             shouldRespond = false;
