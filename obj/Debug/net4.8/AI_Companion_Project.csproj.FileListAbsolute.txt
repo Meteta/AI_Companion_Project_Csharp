@@ -1,0 +1,6 @@
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net4.8\AI_Companion_Project.csproj.AssemblyReference.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net4.8\AI_Companion_Project.csproj.SuggestedBindingRedirects.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net4.8\AI_Companion_Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net4.8\AI_Companion_Project.AssemblyInfoInputs.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net4.8\AI_Companion_Project.AssemblyInfo.cs
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net4.8\AI_Companion_Project.csproj.CoreCompileInputs.cache

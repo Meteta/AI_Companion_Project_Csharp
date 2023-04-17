@@ -1,0 +1,15 @@
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\bin\Debug\net6.0\AI_Companion_Project.exe
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\bin\Debug\net6.0\AI_Companion_Project.deps.json
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\bin\Debug\net6.0\AI_Companion_Project.runtimeconfig.json
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\bin\Debug\net6.0\AI_Companion_Project.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\bin\Debug\net6.0\AI_Companion_Project.pdb
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.csproj.AssemblyReference.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.AssemblyInfoInputs.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.AssemblyInfo.cs
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.csproj.CoreCompileInputs.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\refint\AI_Companion_Project.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.pdb
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\AI_Companion_Project.genruntimeconfig.cache
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project\obj\Debug\net6.0\ref\AI_Companion_Project.dll

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "E1Lys3ZV5YwbmbzEzlvu67tIXRlhLE6c3o7E0OfTx1cQnwNQN7ROAX1RBGEA5dp8/wD1/w4ggMTeBE9HGHO7Xg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Tarkan\\Desktop\\winRepos\\AI_Companion_Project_Csharp\\AI_Companion_Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tarkan\\.nuget\\packages\\microsoft.cognitiveservices.speech\\1.27.0\\microsoft.cognitiveservices.speech.1.27.0.nupkg.sha512",
+    "C:\\Users\\Tarkan\\.nuget\\packages\\system.speech\\7.0.0\\system.speech.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
