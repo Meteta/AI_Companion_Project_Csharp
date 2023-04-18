@@ -39,17 +39,30 @@ namespace AI_Companion
         public static bool listenWhileSpeaking = false;
         public static bool shouldRespond = false;
         public static string lastResponse;
-        static string OPENAI_API_KEY = "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";
-        public static string speechKey = "e605c036e5f74568894465581068ce32"; //Find on https://portal.azure.com/#home
+        static string OPENAI_API_KEY = "";
+        public static string speechKey = ""; //Find on https://portal.azure.com/#home
         public static string speechRegion = "australiaeast"; //Also find on https://portal.azure.com/#home
-        public static OpenAIAPI api = new OpenAIAPI(OPENAI_API_KEY);
-        public static OpenAI_API.Chat.Conversation chat = api.Chat.CreateConversation();
+        public static OpenAIAPI api;
+        public static OpenAI_API.Chat.Conversation chat;
         async static Task Main()
         {
+            //I Could use environment variables to set this, however as this is a personal project, I dont think I need to go that far. 
+            Console.WriteLine("Insert your OPENAI_API_KEY");
+            OPENAI_API_KEY = TextInput();
+            Console.WriteLine("Insert your SPEECH_KEY");
+            speechKey = TextInput();
+            InitializeOpenAI();
+
             SRE speechRecog = new SRE();
             SSE speechSynth = new SSE();
+
             Console.WriteLine("Use Default Settings? [Y]es/[N]o?");
             if(!BoolInput()){
+                Console.WriteLine("Overwrite SPEECH_REGION (australiaeast)? [Y]es/[N]o");
+                if (BoolInput()){
+                    Console.WriteLine("Insert your SPEECH_REGION");
+                }
+                speechRegion = TextInput();
                 // Naming your companion
                 Console.WriteLine("SYSTEM: Input a Name for your Companion");
                 charName = TextInput().ToUpper();
@@ -88,6 +101,11 @@ namespace AI_Companion
                 }
             }
             while(speaking){ /** Keeps the program open until speech has finished.**/ }
+        }
+
+        static void InitializeOpenAI(){
+            api = new OpenAIAPI(OPENAI_API_KEY);
+            chat = api.Chat.CreateConversation();
         }
 
         static void InitPrompt(){
