@@ -44,6 +44,14 @@
               "target": "Package",
               "version": "[1.27.0, )"
             },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
             "System.Speech": {
               "target": "Package",
               "version": "[7.0.0, )"

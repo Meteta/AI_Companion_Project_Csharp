@@ -1,0 +1,9 @@
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project.pdb
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.core.dll
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.extension.audio.sys.dll
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.extension.codec.dll
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.extension.kws.dll
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.extension.kws.ort.dll
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.extension.lu.dll
+C:\Users\Tarkan\Desktop\winRepos\Microsoft.CognitiveServices.Speech.extension.mas.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project.exe
