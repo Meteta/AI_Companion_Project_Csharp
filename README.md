@@ -6,3 +6,5 @@ And a OpenAI API Key - platform.openai.com
 
 Default name is CELESTE
 You can edit the prompt.txt to change the prompt. I recommend googling how to make a ChatGPT personality using chatGPT.
+
+Here is a Demo Vid of the program in action: https://youtu.be/1kHeVehgysA
