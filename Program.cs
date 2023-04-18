@@ -47,12 +47,14 @@ namespace AI_Companion
         async static Task Main()
         {
             //I Could use environment variables to set this, however as this is a personal project, I dont think I need to go that far. 
-            Console.WriteLine("Insert your OPENAI_API_KEY");
-            OPENAI_API_KEY = TextInput();
-            Console.Clear();
-            Console.WriteLine("Insert your SPEECH_KEY");
-            speechKey = TextInput();
-            Console.Clear();
+            if(String.IsNullOrWhiteSpace(OPENAI_API_KEY) || String.IsNullOrWhiteSpace(speechKey)){
+                Console.WriteLine("Insert your OPENAI_API_KEY");
+                OPENAI_API_KEY = TextInput();
+                Console.Clear();
+                Console.WriteLine("Insert your SPEECH_KEY");
+                speechKey = TextInput();
+                Console.Clear();
+            }
             InitializeOpenAI();
 
             SRE speechRecog = new SRE();
@@ -88,6 +90,7 @@ namespace AI_Companion
             InitPrompt();
             
             // Set up complete, run program
+            Console.Clear();
             Console.WriteLine($"SYSTEM: Identity Established {charName}");
             Console.WriteLine($"{charName}: How may I be of Assitance?");
             while (runProgram){
@@ -113,7 +116,7 @@ namespace AI_Companion
         static void InitPrompt(){
             chat.AppendSystemMessage(systemMessage);
             chat.AppendSystemMessage($"Your name is {charName}. You will respond in 2 to 3 sentences at a time. When you hear End Program, say goodbye. You are speaking with {userName}");
-            chat.AppendSystemMessage("Indicate emotion (available as an Azure Voice Synthesis style) at the start of each sentence encompassed with {}. Your available emotions are: affectionate, angry, assistant, calm, chat, cheerful, depressed, disgruntled, embarrassed, empathetic, envious, excited, fearful, friendly, gentle, hopeful, lyrical, sad, serious, shouting, whispering, terrified, unfriendly");
+            chat.AppendSystemMessage("Indicate emotion once at the start of each sentence encompassed with {}. Choose one emotion from your available emotions which are: affectionate, angry, assistant, calm, chat, cheerful, depressed, disgruntled, embarrassed, empathetic, envious, excited, fearful, friendly, gentle, hopeful, lyrical, sad, serious, shouting, whispering, terrified, unfriendly");
         }
 
         static string TextInput(){

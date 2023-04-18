@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4gjcR6BZ0PaA6yoPVDAwP17LkUYM2YtIF8pBJxvyi19JWsAAu/Wgtf1bBrBy8Sx6OYmlBRCgsAgRNtWQTZygCg==",
+  "dgSpecHash": "zGWx0Zji2jVvGv4xikkXJ3uAe2ksjnkzh9EMijrsBbPplepaHJzEmSl9q1oU2JFRV/ldZhJceL3gfxtUTMUd2w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tarkan\\Desktop\\winRepos\\AI_Companion_Project_Csharp\\AI_Companion_Project.csproj",
   "expectedPackageFiles": [
@@ -29,10 +29,7 @@
     "C:\\Users\\Tarkan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",
     "C:\\Users\\Tarkan\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Tarkan\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\Tarkan\\.nuget\\packages\\system.speech\\7.0.0\\system.speech.7.0.0.nupkg.sha512",
-    "C:\\Users\\Tarkan\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.15\\microsoft.netcore.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\Tarkan\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.15\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\Tarkan\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x64.6.0.15.nupkg.sha512"
+    "C:\\Users\\Tarkan\\.nuget\\packages\\system.speech\\7.0.0\\system.speech.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }
