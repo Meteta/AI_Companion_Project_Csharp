@@ -1,4 +1,3 @@
-using System.Speech.Recognition;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using AI_Companion;
@@ -9,15 +8,13 @@ namespace SpeechRecognitionEngine
     public class SRE
     {
          // Speech Recognition Code
-        static string speechKey = "e605c036e5f74568894465581068ce32"; //Find on https://portal.azure.com/#home
-        static string speechRegion = "australiaeast"; //Also find on https://portal.azure.com/#home
         public static Queue<string> transcript = new Queue<string>();
         static void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
         {
             switch (speechRecognitionResult.Reason)
             {
                 case ResultReason.RecognizedSpeech:
-                    Console.WriteLine($"RECOGNIZED: {speechRecognitionResult.Text}");
+                    Console.WriteLine($"{Program.userName.ToUpper()}: {speechRecognitionResult.Text}");
                     transcript.Enqueue(speechRecognitionResult.Text);
                     break;
                 case ResultReason.NoMatch:
@@ -39,11 +36,13 @@ namespace SpeechRecognitionEngine
 
         public async Task SpeechRecognition()
         {
-            var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
+            var speechConfig = SpeechConfig.FromSubscription(Program.speechKey, Program.speechRegion);
             speechConfig.SpeechRecognitionLanguage = "en-US";
-
             
             using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
+            // var audioStream = AudioInputStream.CreatePushStream();
+            // using var audioConfig = AudioConfig.FromStreamInput(audioStream);
+            // using var micConfig = AudioConfig.FromDefaultMicrophoneInput();
             using var speechRecognizer = new Microsoft.CognitiveServices.Speech.SpeechRecognizer(speechConfig, audioConfig);
 
             var phraseList = PhraseListGrammar.FromRecognizer(speechRecognizer);
@@ -60,3 +59,4 @@ namespace SpeechRecognitionEngine
         }        
     }
 }
+

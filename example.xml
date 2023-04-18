@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-16"?>
+<speak version="1.0" xml:lang="en-US" xmlns="https://www.w3.org/2001/10/synthesis">
+  <voice name="en-US-JennyNeural" style="terrified">text</voice>
+</speak>

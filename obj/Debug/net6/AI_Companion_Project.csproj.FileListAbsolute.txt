@@ -133,3 +133,9 @@ C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\Micr
 C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\Microsoft.Extensions.Primitives.dll
 C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\Newtonsoft.Json.dll
 C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\OpenAI_API.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\NAudio.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\NAudio.Asio.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\NAudio.Core.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\NAudio.Midi.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\NAudio.Wasapi.dll
+C:\Users\Tarkan\Desktop\winRepos\AI_Companion_Project_Csharp\bin\Debug\net6\NAudio.WinMM.dll

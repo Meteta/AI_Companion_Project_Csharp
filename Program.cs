@@ -4,6 +4,8 @@ using Microsoft.CognitiveServices.Speech.Audio;
 using OpenAI_API;
 using SpeechRecognitionEngine;
 using static SpeechRecognitionEngine.SRE;
+using SpeechSynthesisEngine;
+using static SpeechSynthesisEngine.SSE;
 
 /**
 TODO:
@@ -16,6 +18,8 @@ https://www.nuget.org/packages/OpenAI/
 5. AI Voice Synthasizer to read response.
 6. Discord Integration.
 
+TODO: Reset Keys on Public Release
+dotnet publish --output "..\AI_Companion_Project_Publish\" --runtime win-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true
 
 ISSUES:
 1. Limited Lifespan
@@ -27,33 +31,64 @@ namespace AI_Companion
     class Program
     {
         static readonly string promptFile = @"promt.txt";
+        public static string userName = "Crew";
+        public static string charName = "CELESTE";
+        public static string systemMessage;
+        public static bool runProgram = true;
+        public static bool endProgram = false;
+        public static bool shouldRespond = false;
+        public static string lastResponse;
+        static string OPENAI_API_KEY = "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";
+        public static string speechKey = "e605c036e5f74568894465581068ce32"; //Find on https://portal.azure.com/#home
+        public static string speechRegion = "australiaeast"; //Also find on https://portal.azure.com/#home
+        public static OpenAIAPI api = new OpenAIAPI(OPENAI_API_KEY);
+        public static OpenAI_API.Chat.Conversation chat = api.Chat.CreateConversation();
         async static Task Main()
         {
-            SRE speech = new SRE();
-            // Naming your companion
-            // Console.WriteLine("SYSTEM: Input a Name for your Companion");
-            // charName = TextInput().ToUpper();
-            // Prompt Warning
-            Console.WriteLine("Edit the prompt.txt file for more specific responses");
-            Console.WriteLine("Would you like to read the textfile?");
-            if (BoolInput()) {
-                systemMessage = File.ReadAllText(promptFile);
+            SRE speechRecog = new SRE();
+            SSE speechSynth = new SSE();
+            Console.WriteLine("Use Default Settings? [Y]es/[N]o?");
+            if(!BoolInput()){
+                // Naming your companion
+                Console.WriteLine("SYSTEM: Input a Name for your Companion");
+                charName = TextInput().ToUpper();
+                Console.WriteLine("SYSTEM: Input a User Name for your companion to address you by.");
+                userName = TextInput();
+                // Prompt Warning
+                Console.WriteLine("Edit the prompt.txt file for more specific responses");
+                Console.WriteLine("Would you like to read the textfile?");
+                if (BoolInput()) {
+                    systemMessage = File.ReadAllText(promptFile);
+                } else {
+                    Console.WriteLine("Please input a prompt. (Think of this as the personality behind your companion. E.G: You are a AI Language learning)");
+                    systemMessage = TextInput();
+                }
             } else {
-                Console.WriteLine("Please input a prompt. (Think of this as the personality behind your companion. E.G: You are a AI Language learning)");
-                systemMessage = TextInput();
+                systemMessage = File.ReadAllText(promptFile);
             }
-
-            chat.AppendSystemMessage(systemMessage);
-            chat.AppendSystemMessage($"Your name is {charName}. You will respond in 2 to 3 sentences at a time. When you hear End Program, say goodbye.");
+            InitPrompt();
             
             // Set up complete, run program
             Console.WriteLine($"SYSTEM: Identity Established {charName}");
             Console.WriteLine($"{charName}: How may I be of Assitance?");
             while (runProgram){
-                await speech.SpeechRecognition();
+                await speechRecog.SpeechRecognition();
                 searchForChoices();
-                if(shouldRespond) await textToAI();
+                if(shouldRespond) {
+                    await textToAI();
+                    speechSynth.SpeechSynthesis();
+                }
             }
+            while(!endProgram){
+
+            }
+            // await speechSynth.SpeechSynthesis();
+        }
+
+        static void InitPrompt(){
+            chat.AppendSystemMessage(systemMessage);
+            chat.AppendSystemMessage($"Your name is {charName}. You will respond in 2 to 3 sentences at a time. When you hear End Program, say goodbye. You are speaking with {userName}");
+            chat.AppendSystemMessage("Indicate emotion (available as an Azure Voice Synthesis style) at the start of each sentence encompassed with {}. Your available emotions are: affectionate, angry, assistant, calm, chat, cheerful, depressed, disgruntled, embarrassed, empathetic, envious, excited, fearful, friendly, gentle, hopeful, lyrical, sad, serious, shouting, whispering, terrified, unfriendly");
         }
 
         static string TextInput(){
@@ -77,14 +112,6 @@ namespace AI_Companion
             if(temp.ToUpper() == "Y") return true;
             else return false;
         }
-
-        public static string charName = "CELESTE";
-        public static string systemMessage;
-        public static bool runProgram = true;
-        public static bool shouldRespond = false;
-        static string OPENAI_API_KEY = "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";
-        public static OpenAIAPI api = new OpenAIAPI(OPENAI_API_KEY);
-        public static OpenAI_API.Chat.Conversation chat = api.Chat.CreateConversation();
 
         // TEXT OPERATIONS
         static bool compareIgnoreCase(string text, string compare){
@@ -125,17 +152,27 @@ namespace AI_Companion
         }
 
         static async Task textToAI(){
-            // To deal with limited space issues, reset the chat every 100 messages
-            if (chat.Messages.Count > 100){
-                chat = api.Chat.CreateConversation();
-                chat.AppendSystemMessage(systemMessage);
-                chat.AppendSystemMessage($"Your name is {charName}. You will respond in 2 to 3 sentences at a time. When you hear End Program, say goodbye.");
-            }
-            chat.AppendUserInput(transcript.Last<string>());
+            try{
+                // To deal with limited space issues, reset the chat every 100 messages
+                if (chat.Messages.Count > 100){
+                    chat = api.Chat.CreateConversation();
+                    InitPrompt();
+                }
 
-            string response = await chat.GetResponseFromChatbotAsync();
-            Console.WriteLine($"{charName} - RESPONSE : {response} ");
-            shouldRespond = false;
+                // Add transcript to user input, then clear transcript
+                foreach(string text in transcript){
+                    chat.AppendUserInputWithName(userName, text);
+                }
+                // chat.AppendUserInputWithName(userName, transcript.Last<string>());
+                transcript.Clear();
+
+                lastResponse = await chat.GetResponseFromChatbotAsync();
+                Console.WriteLine($"{charName} - RESPONSE : {lastResponse} ");
+                shouldRespond = false;
+            }
+            catch{
+                Console.WriteLine("SYSTEM: Caught error attempting to speak when there were no words.");
+            }
         }
     }
 }

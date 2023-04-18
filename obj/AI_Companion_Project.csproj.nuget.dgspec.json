@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[1.27.0, )"
             },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "OpenAI": {
               "target": "Package",
               "version": "[1.7.2, )"
