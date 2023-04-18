@@ -49,8 +49,10 @@ namespace AI_Companion
             //I Could use environment variables to set this, however as this is a personal project, I dont think I need to go that far. 
             Console.WriteLine("Insert your OPENAI_API_KEY");
             OPENAI_API_KEY = TextInput();
+            Console.Clear();
             Console.WriteLine("Insert your SPEECH_KEY");
             speechKey = TextInput();
+            Console.Clear();
             InitializeOpenAI();
 
             SRE speechRecog = new SRE();
