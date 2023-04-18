@@ -63,7 +63,7 @@ namespace SpeechSynthesisEngine
 
         public async Task SpeechSynthesis()
         {
-            Program.endProgram = false;
+            Program.speaking = true;
             if(speechSynthesizer != null){
                 await speechSynthesizer.StopSpeakingAsync();
                 speechSynthesizer = null;
@@ -81,7 +81,7 @@ namespace SpeechSynthesisEngine
             ssmlVoiceGeneration(text);
             var speechSynthesisResult = await speechSynthesizer.SpeakSsmlAsync(ssmlVoiceGeneration(text));
             OutputSpeechSynthesisResult(speechSynthesisResult, text);
-            Program.endProgram = true;
+            Program.speaking = false;
         }
     }
 }

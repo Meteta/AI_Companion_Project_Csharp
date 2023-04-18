@@ -35,7 +35,8 @@ namespace AI_Companion
         public static string charName = "CELESTE";
         public static string systemMessage;
         public static bool runProgram = true;
-        public static bool endProgram = false;
+        public static bool speaking = false;
+        public static bool listenWhileSpeaking = false;
         public static bool shouldRespond = false;
         public static string lastResponse;
         static string OPENAI_API_KEY = "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";
@@ -55,14 +56,17 @@ namespace AI_Companion
                 Console.WriteLine("SYSTEM: Input a User Name for your companion to address you by.");
                 userName = TextInput();
                 // Prompt Warning
-                Console.WriteLine("Edit the prompt.txt file for more specific responses");
-                Console.WriteLine("Would you like to read the textfile?");
+                Console.WriteLine("SYSTEM: Edit the prompt.txt file for more specific responses");
+                Console.WriteLine("SYSTEM: Would you like to read the textfile?");
                 if (BoolInput()) {
                     systemMessage = File.ReadAllText(promptFile);
                 } else {
                     Console.WriteLine("Please input a prompt. (Think of this as the personality behind your companion. E.G: You are a AI Language learning)");
                     systemMessage = TextInput();
                 }
+                Console.WriteLine($"SYSTEM: Would you like {charName} to listen to you while they are speaking");
+                Console.WriteLine($"SYSTEM: This will in various cases result in {charName} hearing their own voice, which can cause issues. This is issue is dependant on your sound set up");
+                listenWhileSpeaking = BoolInput();
             } else {
                 systemMessage = File.ReadAllText(promptFile);
             }
@@ -76,13 +80,14 @@ namespace AI_Companion
                 searchForChoices();
                 if(shouldRespond) {
                     await textToAI();
-                    speechSynth.SpeechSynthesis();
+                    if (listenWhileSpeaking){ // If this setting is set, the program will listen while speaking, results in less accurate transcripts
+                        speechSynth.SpeechSynthesis();
+                    } else { // Else, wait for AI to finish speaking before continuing
+                        await speechSynth.SpeechSynthesis();
+                    }
                 }
             }
-            while(!endProgram){
-
-            }
-            // await speechSynth.SpeechSynthesis();
+            while(speaking){ /** Keeps the program open until speech has finished.**/ }
         }
 
         static void InitPrompt(){
